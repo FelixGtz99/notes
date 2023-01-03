@@ -1,0 +1,38 @@
+main{
+    max-width: 800px;
+}
+input[type='text']{
+width: 150px;
+padding: 10px 25px 10px 25px;
+margin-bottom: 15px;
+border-radius: 2rem;
+border-color: var(--primary-color);
+}
+textarea{
+    width: 200px;
+    margin-bottom: 15px;
+border-radius: 10%;
+border-color: var(--primary-color);
+}
+input[type='text']:focus, textarea:focus{
+    outline: none !important;
+    border-color: var(--secondary-color);
+    }
+#note-container{
+    color: var(--accent-color);
+margin: 25px 0px 25px 0px;
+padding: 25px 50px 25px 50px;
+border-radius: 2rem;
+width: 50%;
+border: 5px dashed var(--primary-color) ;
+}
+#note-container>h3{
+    font-size: 2rem;
+    font-weight: bold;
+    font-style: italic;
+}
+#remove-button{
+  position: absolute;
+  left: 60%;  
+}
+
