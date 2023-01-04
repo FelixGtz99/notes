@@ -2,10 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 
 :root{
-  --background-color:#FFFAFB;
-  --primary-color:#339989;
-  --secondary-color:#7DE2D1;
-  --accent-color:#2B2C28;
+  --background-color:#31314B;
+  --primary-color:#F7F7F7;
+  --secondary-color:#75849B;
+  --accent-color:#5D739A;
+ 
 }
 body {
 font-family: Raleway, sans-serif;

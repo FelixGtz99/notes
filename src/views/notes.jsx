@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Note from "../components/note";
-import '../css/notes.css'
+import "../css/notes.css";
 class Notes extends Component {
   constructor(props) {
     super(props);
@@ -8,10 +8,12 @@ class Notes extends Component {
       title: "",
       data: "",
       notes: JSON.parse(localStorage.getItem("notes")) ?? [],
+      selectedNote: null,
     };
     this.handleChange = this.handleChange.bind(this);
     this.saveNote = this.saveNote.bind(this);
-    this.onRemove = this.onRemove.bind(this)
+    this.selectHandle = this.selectHandle.bind(this);
+    this.onRemove = this.onRemove.bind(this);
   }
   handleChange(event) {
     this.setState({
@@ -21,7 +23,7 @@ class Notes extends Component {
   saveNote() {
     if (this.state.title === "" || this.state.data === "") return;
     const note = {
-      id: this.state.notes[this.state.notes.length-1].id+1,
+      id: this.state.notes[this.state.notes.length - 1].id + 1,
       title: this.state.title,
       data: this.state.data,
     };
@@ -33,6 +35,17 @@ class Notes extends Component {
     });
     localStorage.setItem("notes", JSON.stringify(tempNotes));
   }
+
+  selectHandle(event) {
+    const id = event.target.getAttribute("name");
+    const selectedNote = this.state.notes.find(
+      (note) => note.id === Number(id)
+    );
+    console.log(selectedNote);
+    this.setState({
+      selectedNote
+    })
+  }
   onRemove(id) {
     const tempNotes = this.state.notes.filter((note) => note.id !== id);
     this.setState({
@@ -41,11 +54,11 @@ class Notes extends Component {
 
     localStorage.setItem("notes", JSON.stringify(tempNotes));
   }
+
   render() {
     return (
-        <center>
-  <main>
-        <section id="new-note">
+      <main>
+        {/* <section id="new-note">
           <h1>Notes</h1>
           <input
             type="text"
@@ -64,15 +77,30 @@ class Notes extends Component {
             value={this.state.data}
           ></textarea><br />
           <button onClick={this.saveNote} id='save-button'>Save</button>
-        </section>
+        </section> */}
         <section id="notes-list">
           {this.state.notes.map((note) => (
-            <Note note={note} onRemove={()=>this.onRemove(note.id)} />
+            <div
+              className="list-item"
+              name={note.id}
+              onClick={this.selectHandle}
+            >
+              <h3 name={note.id}>{note.title}</h3>
+            </div>
           ))}
         </section>
+        <div className="divider"></div>
+        <section id="notes-display">
+          {this.state.selectedNote !== null ? (
+            <Note
+              note={this.state.selectedNote}
+              onRemove={() => this.onRemove(this.selectedNote.id)}
+            />
+          ) : (
+            ""
+          )}
+        </section>
       </main>
-        </center>
-    
     );
   }
 }

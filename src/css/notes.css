@@ -1,38 +1,97 @@
 main{
-    max-width: 800px;
+    width: 800px;
+    height: 800px;
+    border-radius: 20px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    position: relative;
+    margin: 0 auto;
+    top: 50px;
 }
 input[type='text']{
-width: 150px;
-padding: 10px 25px 10px 25px;
-margin-bottom: 15px;
-border-radius: 2rem;
-border-color: var(--primary-color);
+     width: 150px;
+     padding: 10px 25px 10px 25px;
+     margin-bottom: 15px;
+     border-radius: 2rem;
+     border-color: var(--primary-color);
 }
 textarea{
     width: 200px;
     margin-bottom: 15px;
-border-radius: 10%;
-border-color: var(--primary-color);
+    border-radius: 10%;
+    border-color: var(--primary-color);
 }
 input[type='text']:focus, textarea:focus{
     outline: none !important;
     border-color: var(--secondary-color);
-    }
-#note-container{
+}
+
+#notes-list{
+    position: absolute;
+    width: 40%;
+}
+
+.list-item{
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+.list-item>h3{
+    font-size: 30px;
     color: var(--accent-color);
-margin: 25px 0px 25px 0px;
-padding: 25px 50px 25px 50px;
-border-radius: 2rem;
-width: 50%;
-border: 5px dashed var(--primary-color) ;
+    margin-left: 10%;
+    font-weight: bold;
+
+}
+.list-item-selected{
+    background-color: #f3f5f7;
+}
+.divider {
+    position: absolute;
+    left: 40%;
+    width: 1px;
+    height: 100%;
+    border-left: 2px solid var(--secondary-color);
+  }
+#notes-display{
+    position: absolute;
+    left:50%; 
+    width: 50%;
+}
+#note-container{
+    border-radius: 2rem;
+    width: 50%;
+    border: 5px dashed var(--primary-color) ;
+    position: relative;
 }
 #note-container>h3{
     font-size: 2rem;
+    color: var(--accent-color);
+
     font-weight: bold;
     font-style: italic;
 }
+#note-container>p{
+    font-size: 20px;
+    inline-size: 200%;
+    line-height: 150%;
+}
 #remove-button{
-  position: absolute;
-  left: 60%;  
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 24px;
+    cursor: pointer;
+    /*TODO: remove display none  */
+    display: none;
+
+}
+#remove-button:hover{
+    background-color: var(--accent-color);
+    
 }
 

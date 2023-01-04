@@ -3,7 +3,7 @@ import '../css/notes.css'
 function Note(props){
 return(
     <div id="note-container">
-        <button id="remove-button" onClick={props.onRemove}>Remove</button>
+        <button id="remove-button" onClick={props.onRemove}>X</button>
 
         <h3>{props.note.title}</h3>
         <p>
