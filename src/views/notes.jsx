@@ -9,8 +9,10 @@ class Notes extends Component {
       data: "",
       notes: JSON.parse(localStorage.getItem("notes")) ?? [],
       selectedNote: null,
+      newNoteVisible: false,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.addNote=this.addNote.bind(this)
     this.saveNote = this.saveNote.bind(this);
     this.selectHandle = this.selectHandle.bind(this);
     this.onRemove = this.onRemove.bind(this);
@@ -43,13 +45,21 @@ class Notes extends Component {
     );
     console.log(selectedNote);
     this.setState({
-      selectedNote
-    })
+      selectedNote,
+    });
+  }
+ addNote() {
+  console.log('click')
+  console.log(this.state.newNoteVisible)
+      this.setState({
+        newNoteVisible:!this.state.newNoteVisible
+      })
   }
   onRemove(id) {
     const tempNotes = this.state.notes.filter((note) => note.id !== id);
     this.setState({
       notes: tempNotes,
+      selectedNote:null
     });
 
     localStorage.setItem("notes", JSON.stringify(tempNotes));
@@ -58,48 +68,92 @@ class Notes extends Component {
   render() {
     return (
       <main>
-        {/* <section id="new-note">
-          <h1>Notes</h1>
-          <input
-            type="text"
-            id="text-title"
-            name="title"
-            onChange={this.handleChange}
-            value={this.state.title}
-          />{" "}
-          <br />
-          <textarea
-            name="data"
-            id="text-data"
-            cols="30"
-            rows="10"
-            onChange={this.handleChange}
-            value={this.state.data}
-          ></textarea><br />
-          <button onClick={this.saveNote} id='save-button'>Save</button>
-        </section> */}
-        <section id="notes-list">
-          {this.state.notes.map((note) => (
-            <div
-              className="list-item"
-              name={note.id}
-              onClick={this.selectHandle}
+        <article id="notes">
+          <section id="notes-list">
+            {this.state.notes.map((note) => (
+              <div
+                name={note.id}
+                onClick={this.selectHandle}
+                className={
+                  note.id !== this.state.selectedNote?.id
+                    ? "list-item "
+                    : "selected list-item"
+                }
+              >
+                <h3 name={note.id}>{note.title}</h3>
+              </div>
+            ))}
+          </section>
+          <div className="divider"></div>
+          <section id="notes-display">
+            {this.state.selectedNote !== null ? (
+              <Note
+                note={this.state.selectedNote}
+                onRemove={() => this.onRemove(this.state.selectedNote.id)}
+              />
+            ) : (
+              ""
+            )}
+          </section>
+          <section id="notes-list">
+            {this.state.notes.map((note) => (
+              <div
+                name={note.id}
+                onClick={this.selectHandle}
+                className={
+                  note.id !== this.state.selectedNote?.id
+                    ? "list-item "
+                    : "selected list-item"
+                }
+              >
+                <h3 name={note.id}>{note.title}</h3>
+              </div>
+            ))}
+          </section>
+          <div className="divider"></div>
+          <section id="notes-display">
+            {this.state.selectedNote !== null ? (
+              <Note
+                note={this.state.selectedNote}
+                onRemove={() => this.onRemove(this.state.selectedNote.id)}
+              />
+            ) : (
+              ""
+            )}
+          </section>
+        </article>
+        <center>
+          <article id="new">
+            <button onClick={this.addNote}>+</button>
+            <section
+              id="new-note"
+              className={this.state.newNoteVisible ? "" : "hidden"}
             >
-              <h3 name={note.id}>{note.title}</h3>
-            </div>
-          ))}
-        </section>
-        <div className="divider"></div>
-        <section id="notes-display">
-          {this.state.selectedNote !== null ? (
-            <Note
-              note={this.state.selectedNote}
-              onRemove={() => this.onRemove(this.selectedNote.id)}
-            />
-          ) : (
-            ""
-          )}
-        </section>
+              <input
+                type="text"
+                id="text-title"
+                name="title"
+                placeholder="title"
+                onChange={this.handleChange}
+                value={this.state.title}
+              />{" "}
+              <br />
+              <textarea
+                name="data"
+                id="text-data"
+                cols="50"
+                rows="6"
+                placeholder="text"
+                onChange={this.handleChange}
+                value={this.state.data}
+              ></textarea>
+              <br />
+              <button onClick={this.saveNote} id="save-button">
+                Save
+              </button>
+            </section>
+          </article>
+        </center>
       </main>
     );
   }

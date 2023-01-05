@@ -1,4 +1,4 @@
-main{
+#notes{
     width: 800px;
     height: 800px;
     border-radius: 20px;
@@ -8,18 +8,36 @@ main{
     margin: 0 auto;
     top: 50px;
 }
+#new{
+    margin-top:100px;
+}
 input[type='text']{
-     width: 150px;
+     width:200px;
      padding: 10px 25px 10px 25px;
      margin-bottom: 15px;
+     margin-top: 15px;
      border-radius: 2rem;
      border-color: var(--primary-color);
 }
 textarea{
-    width: 200px;
+    width: 300px;
     margin-bottom: 15px;
-    border-radius: 10%;
+    border-radius: 5%;
     border-color: var(--primary-color);
+}
+#save-button{
+     padding: 10px 25px 10px 25px;
+     font-size: 25px;
+     border-radius: 10%;
+     background-color: var(--primary-color);
+     color: var(--secondary-color);
+  
+}
+#save-button:hover{
+    color: var(--primary-color);
+ 
+    background-color: var(--accent-color);
+
 }
 input[type='text']:focus, textarea:focus{
     outline: none !important;
@@ -42,8 +60,8 @@ input[type='text']:focus, textarea:focus{
     font-weight: bold;
 
 }
-.list-item-selected{
-    background-color: #f3f5f7;
+.selected{
+    background-color: #b9bece;
 }
 .divider {
     position: absolute;
@@ -72,13 +90,13 @@ input[type='text']:focus, textarea:focus{
 }
 #note-container>p{
     font-size: 20px;
-    inline-size: 200%;
+    inline-size: 180%;
     line-height: 150%;
 }
 #remove-button{
     position: absolute;
     top: 10px;
-    right: 10px;
+    left: 300px;
     color: var(--secondary-color);
     border: none;
     border-radius: 50%;
@@ -87,11 +105,25 @@ input[type='text']:focus, textarea:focus{
     font-size: 24px;
     cursor: pointer;
     /*TODO: remove display none  */
-    display: none;
 
 }
 #remove-button:hover{
     background-color: var(--accent-color);
     
 }
-
+#new>button{
+    border: 4px solid var(--accent-color);
+    width: 4rem;
+    height: 4rem;
+    font-size: 40px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+}
+#new>button:hover{
+    border: 4px solid var(--primary-color);
+     color:var(--primary-color) ;
+    background-color:var(--accent-color) ;
+}
+.hidden{
+display: none;
+}
